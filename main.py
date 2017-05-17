@@ -46,16 +46,20 @@ def login():
 def get_session_key():
     app_id = app.config.get('app_id', None)
     app_secret = app.config.get('app_secret', None)
-    url = "https://api.weixin.qq.com/sns/jscode2session?appid={app_id}&secret={app_secret}&" \
-          "js_code={js_code}&grant_type=authorization_code"
+    url = "https://api.weixin.qq.com/sns/jscode2session?appid={app_id}&secret={app_secret}&js_code={js_code}&grant_type=authorization_code"
     js_code = request.args.get('js_code', '')
     response = urllib2.urlopen(url.format(app_id=app_id, app_secret=app_secret, js_code=js_code))
     j_obj = json.loads(response)
-    open_id = j_obj.get("open_id", None)
-    session_key = j_obj.get("session_key", None)
-    expires_in = j_obj.get("expires_in", 1500)
-    memcache.add(open_id, session_key, expires_in)
-    return jsonify(status=True)
+    errcode = j_obj.get("errcode", None)
+    if errcode:
+        msg = j_obj.get("errmsg", None)
+        return jsonify(status="fail", errcode="errcode", msg=msg)
+    else:
+        open_id = j_obj.get("open_id", None)
+        session_key = j_obj.get("session_key", None)
+        expires_in = j_obj.get("expires_in", 1500)
+        memcache.add(open_id, session_key, expires_in)
+        return jsonify(status="success")
 
 
 @app.route('/auto/<app>/<ctrl>/<pk>')
