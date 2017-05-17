@@ -1,6 +1,5 @@
-import json
 import urllib2
-
+import json
 from google.appengine.api import memcache
 
 from flask import Flask, jsonify
@@ -44,12 +43,12 @@ def login():
 @app.route('/wx/get_session_key')
 #@check_wx_referer
 def get_session_key():
+    js_code = request.args.get('js_code', '')
     app_id = app.config.get('app_id', None)
     app_secret = app.config.get('app_secret', None)
     url = "https://api.weixin.qq.com/sns/jscode2session?appid={app_id}&secret={app_secret}&js_code={js_code}&grant_type=authorization_code"
-    js_code = request.args.get('js_code', '')
     response = urllib2.urlopen(url.format(app_id=app_id, app_secret=app_secret, js_code=js_code))
-    j_obj = json.loads(response)
+    j_obj = json.loads(response.read())
     errcode = j_obj.get("errcode", None)
     if errcode:
         msg = j_obj.get("errmsg", None)
@@ -62,10 +61,12 @@ def get_session_key():
         return jsonify(status="success")
 
 
+
+"""
 @app.route('/auto/<app>/<ctrl>/<pk>')
 def rout_handler(app, ctrl, pk):
     return 'Under Construct'
-
+"""
 
 if __name__ == '__main__':
     app.debug(True)
