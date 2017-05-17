@@ -1,4 +1,9 @@
-from flask import Flask
+import json
+import urllib2
+
+from google.appengine.api import memcache
+
+from flask import Flask, jsonify
 from flask import request
 from functools import wraps
 from functions.WXBizDataCrypt import WXBizDataCrypt
@@ -12,11 +17,12 @@ def check_wx_referer(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
         referer = request.headers.get('referer', "")
-        app_id = app.config.get('app_id',"")
+        app_id = app.config.get('app_id', "")
         st = "https://servicewechat.com/{appid}".format(appid=app_id)
         if not referer.startswith(st):
-            return "{}"
+            return "You're Not My Little App"
         return f(*args, **kwargs)
+
     return decorated_function
 
 
@@ -36,11 +42,20 @@ def login():
 
 
 @app.route('/wx/get_session_key')
-@check_wx_referer
+#@check_wx_referer
 def get_session_key():
-    url = "https://api.weixin.qq.com/sns/jscode2session?appid={app_id}&secret={app_secret}&js_code=JSCODE&grant_type=authorization_code"
+    app_id = app.config.get('app_id', None)
+    app_secret = app.config.get('app_secret', None)
+    url = "https://api.weixin.qq.com/sns/jscode2session?appid={app_id}&secret={app_secret}&" \
+          "js_code={js_code}&grant_type=authorization_code"
     js_code = request.args.get('js_code', '')
-
+    response = urllib2.urlopen(url.format(app_id=app_id, app_secret=app_secret, js_code=js_code))
+    j_obj = json.loads(response)
+    open_id = j_obj.get("open_id", None)
+    session_key = j_obj.get("session_key", None)
+    expires_in = j_obj.get("expires_in", 1500)
+    memcache.add(open_id, session_key, expires_in)
+    return jsonify(status=True)
 
 
 @app.route('/auto/<app>/<ctrl>/<pk>')
