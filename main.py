@@ -1,6 +1,8 @@
 import base64
 import urllib2
 import json
+
+import logging
 from google.appengine.api import memcache
 from auth.models import User
 from flask import Flask, jsonify, redirect
@@ -95,10 +97,11 @@ def get_session():
         open_id = j_obj.get("openid", "None")
         session_key = j_obj.get("session_key", "None")
         expires_in = j_obj.get("expires_in", 1500)
+        logging.debug("Key is %s" % open_id)
         memcache.set(open_id, session_key, expires_in)
         mAES = mCrypt()
-        open_id = mAES.encrypt(open_id)
-        return jsonify(status="success", open_id=open_id)
+        en_open_id = mAES.encrypt(open_id)
+        return jsonify(status="success", open_id=en_open_id)
 
 
 """
