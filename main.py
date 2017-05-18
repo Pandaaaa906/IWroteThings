@@ -55,7 +55,7 @@ def index():
 
 
 @app.route('/wx/login', methods=["GET", "POST"])
-@check_wx_referer
+# @check_wx_referer
 def login():
     open_id = request.args.get("open_id")
     mAES = mCrypt()
@@ -79,7 +79,7 @@ def login():
 
 
 @app.route('/wx/get_session')
-@check_wx_referer
+# @check_wx_referer
 def get_session():
     js_code = request.args.get('js_code', '')
     app_id = app.config.get('app_id', None)
