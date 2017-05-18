@@ -59,7 +59,7 @@ def setupmethod(f):
                 'in the application where a module was not imported '
                 'and decorators or other functionality was called too late.\n'
                 'To fix this make sure to import all your view modules, '
-                'database User and everything related at a central place '
+                'database auth and everything related at a central place '
                 'before the application starts serving requests.')
         return f(self, *args, **kwargs)
     return update_wrapper(wrapper_func, f)
