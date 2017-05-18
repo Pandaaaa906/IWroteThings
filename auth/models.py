@@ -2,7 +2,7 @@ from google.appengine.ext import ndb as db
 
 
 class User(db.Model):
-    openId = db.KeyProperty()
+    openId = db.StringProperty()
     unionId = db.StringProperty()
     nickName = db.TextProperty()
     gender = db.IntegerProperty(choices=set([0, 1, 2]))

@@ -62,7 +62,6 @@ def login():
     open_id = request.args.get("open_id")
     mAES = mCrypt()
     open_id = mAES.decrypt(open_id)
-
     session_key = memcache.get(open_id, None)
     if session_key is None:
         return jsonify(status="fail", msg="Session Lost Please re-Login")
@@ -74,8 +73,11 @@ def login():
         pc = WXBizDataCrypt(app_id, session_key)
         obj = pc.decrypt(encryptedData, iv)
         obj.pop("watermark")
-        user = User(**obj)
-        user.put()
+        try:
+            user = User(**obj)
+            user.put()
+        except BaseException as e:
+            print e
         return jsonify(obj)
         # TODO check&add user to database
 
@@ -97,7 +99,6 @@ def get_session():
         open_id = j_obj.get("openid", "None")
         session_key = j_obj.get("session_key", "None")
         expires_in = j_obj.get("expires_in", 1500)
-        logging.debug("Key is %s" % open_id)
         memcache.set(open_id, session_key, expires_in)
         mAES = mCrypt()
         en_open_id = mAES.encrypt(open_id)
