@@ -3,7 +3,7 @@
     werkzeug.urls
     ~~~~~~~~~~~~~
 
-    ``werkzeug.urls`` used to provide several wrapper functions for Python 2
+    ``werkzeug.urls`` used to provide several wrapper my_module for Python 2
     urlparse, whose main purpose were to work around the behavior of the Py2
     stdlib and its lack of unicode support. While this was already a somewhat
     inconvenient situation, it got even more complicated because Python 3's
@@ -735,7 +735,7 @@ def url_decode_stream(stream, charset='utf-8', decode_keys=False,
                       include_empty=True, errors='replace', separator='&',
                       cls=None, limit=None, return_iterator=False):
     """Works like :func:`url_decode` but decodes a stream.  The behavior
-    of stream and limit follows functions like
+    of stream and limit follows my_module like
     :func:`~werkzeug.wsgi.make_line_iter`.  The generator of pairs is
     directly fed to the `cls` so you can consume the data while it's
     parsed.

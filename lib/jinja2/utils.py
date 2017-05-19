@@ -3,7 +3,7 @@
     jinja2.utils
     ~~~~~~~~~~~~
 
-    Utility functions.
+    Utility my_module.
 
     :copyright: (c) 2017 by the Jinja Team.
     :license: BSD, see LICENSE for more details.
@@ -45,7 +45,7 @@ def contextfunction(f):
     """This decorator can be used to mark a function or method context callable.
     A context callable is passed the active :class:`Context` as first argument when
     called from the template.  This is useful if a function wants to get access
-    to the context or functions provided on the context object.  For example
+    to the context or my_module provided on the context object.  For example
     a function that returns a sorted list of template variables the current
     template exports could look like this::
 

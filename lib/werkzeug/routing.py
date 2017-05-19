@@ -3,10 +3,10 @@
     werkzeug.routing
     ~~~~~~~~~~~~~~~~
 
-    When it comes to combining multiple controller or view functions (however
+    When it comes to combining multiple controller or view my_module (however
     you want to call them) you need a dispatcher.  A simple way would be
     applying regular expression tests on the ``PATH_INFO`` and calling
-    registered callback functions that return the value then.
+    registered callback my_module that return the value then.
 
     This module implements a much more powerful system than simple regular
     expression matching because it can also convert values in the URLs and

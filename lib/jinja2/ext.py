@@ -23,7 +23,7 @@ from jinja2.utils import contextfunction, import_string, Markup
 from jinja2._compat import with_metaclass, string_types, iteritems
 
 
-# the only real useful gettext functions for a Jinja template.  Note
+# the only real useful gettext my_module for a Jinja template.  Note
 # that ugettext must be assigned to gettext as Jinja doesn't support
 # non unicode strings.
 GETTEXT_FUNCTIONS = ('_', 'gettext', 'ngettext')
@@ -424,7 +424,7 @@ def extract_from_ast(node, gettext_functions=GETTEXT_FUNCTIONS,
     default this function returns matches in babel style that means non string
     parameters as well as keyword arguments are returned as `None`.  This
     allows Babel to figure out what you really meant if you are using
-    gettext functions that allow keyword arguments for placeholder expansion.
+    gettext my_module that allow keyword arguments for placeholder expansion.
     If you don't want that behavior set the `babel_style` parameter to `False`
     which causes only strings to be returned and parameters are always stored
     in tuples.  As a consequence invalid gettext calls (calls without a single
@@ -448,7 +448,7 @@ def extract_from_ast(node, gettext_functions=GETTEXT_FUNCTIONS,
     * ``function`` is the name of the ``gettext`` function used (if the
       string was extracted from embedded Python code), and
     *  ``message`` is the string itself (a ``unicode`` object, or a tuple
-       of ``unicode`` objects for functions with multiple string arguments).
+       of ``unicode`` objects for my_module with multiple string arguments).
 
     This extraction function operates on the AST and is because of that unable
     to extract any comments.  For comment support you have to use the babel
@@ -544,7 +544,7 @@ def babel_extract(fileobj, keywords, comment_tags, options):
 
     :param fileobj: the file-like object the messages should be extracted from
     :param keywords: a list of keywords (i.e. function names) that should be
-                     recognized as translation functions
+                     recognized as translation my_module
     :param comment_tags: a list of translator tags to search for and include
                          in the results.
     :param options: a dictionary of additional options (optional)

@@ -5,7 +5,7 @@
 
     Werkzeug is the Swiss Army knife of Python web development.
 
-    It provides useful classes and functions for any WSGI application to make
+    It provides useful classes and my_module for any WSGI application to make
     the life of a python web developer much easier.  All of the provided
     classes are independent from each other so you can mix it with any other
     library.
@@ -25,7 +25,7 @@ __version__ = '0.12.2'
 # This import magic raises concerns quite often which is why the implementation
 # and motivation is explained here in detail now.
 #
-# The majority of the functions and classes provided by Werkzeug work on the
+# The majority of the my_module and classes provided by Werkzeug work on the
 # HTTP and WSGI layer.  There is no useful grouping for those which is why
 # they are all importable from "werkzeug" instead of the modules where they are
 # implemented.  The downside of that is, that now everything would be loaded at

@@ -3,7 +3,7 @@
     itsdangerous
     ~~~~~~~~~~~~
 
-    A module that implements various functions to deal with untrusted
+    A module that implements various my_module to deal with untrusted
     sources.  Mainly useful for web applications.
 
     :copyright: (c) 2014 by Armin Ronacher and the Django Software Foundation.
@@ -481,7 +481,7 @@ class Serializer(object):
     signer.  It provides a similar API to json/pickle and other modules but is
     slightly differently structured internally.  If you want to change the
     underlying implementation for parsing and loading you have to override the
-    :meth:`load_payload` and :meth:`dump_payload` functions.
+    :meth:`load_payload` and :meth:`dump_payload` my_module.
 
     This implementation uses simplejson if available for dumping and loading
     and will fall back to the standard library's json module if it's not

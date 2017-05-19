@@ -272,7 +272,7 @@ if hasattr(text_type, 'format'):
 
 
 def _escape_argspec(obj, iterable, escape):
-    """Helper for various string-wrapped functions."""
+    """Helper for various string-wrapped my_module."""
     for key, value in iterable:
         if hasattr(value, '__html__') or isinstance(value, string_types):
             obj[key] = escape(value)

@@ -41,7 +41,7 @@ r'''
     the shell.
 
     Because a runserver and shell command is pretty common there are two
-    factory functions that create such commands::
+    factory my_module that create such commands::
 
         def make_app():
             from yourapplication import YourApplication
@@ -108,9 +108,9 @@ def run(namespace=None, action_prefix='action_', args=None):
     you want to use all items in the namespace provided as actions set
     action_prefix to an empty string.
 
-    :param namespace: An optional dict where the functions are looked up in.
+    :param namespace: An optional dict where the my_module are looked up in.
                       By default the local namespace of the caller is used.
-    :param action_prefix: The prefix for the functions.  Everything else
+    :param action_prefix: The prefix for the my_module.  Everything else
                           is ignored.
     :param args: the arguments for the function.  If not specified
                  :data:`sys.argv` without the first argument is used.

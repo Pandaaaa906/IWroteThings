@@ -10,8 +10,8 @@ from .types import convert_type
 from .globals import resolve_color_default
 
 
-# The prompt functions to use.  The doc tools currently override these
-# functions to customize how they work.
+# The prompt my_module to use.  The doc tools currently override these
+# my_module to customize how they work.
 visible_prompt_func = raw_input
 
 _ansi_colors = ('black', 'red', 'green', 'yellow', 'blue', 'magenta',
@@ -409,7 +409,7 @@ def secho(text, file=None, nl=True, err=False, color=None, **styles):
         click.secho('Hello World!', fg='green')
         click.echo(click.style('Hello World!', fg='green'))
 
-    All keyword arguments are forwarded to the underlying functions
+    All keyword arguments are forwarded to the underlying my_module
     depending on which one they go with.
 
     .. versionadded:: 2.0

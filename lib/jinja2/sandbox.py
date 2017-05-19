@@ -32,7 +32,7 @@ if PY2:
     UNSAFE_FUNCTION_ATTRIBUTES = set(['func_closure', 'func_code', 'func_dict',
                                       'func_defaults', 'func_globals'])
 else:
-    # On versions > python 2 the special attributes on functions are gone,
+    # On versions > python 2 the special attributes on my_module are gone,
     # but they remain on methods and generators for whatever reason.
     UNSAFE_FUNCTION_ATTRIBUTES = set()
 
@@ -236,7 +236,7 @@ class SandboxedEnvironment(Environment):
     """The sandboxed environment.  It works like the regular environment but
     tells the compiler to generate sandboxed code.  Additionally subclasses of
     this environment may override the methods that tell the runtime what
-    attributes or functions are safe to access.
+    attributes or my_module are safe to access.
 
     If the template tries to access insecure code a :exc:`SecurityError` is
     raised.  However also other exceptions may occur during the rendering so

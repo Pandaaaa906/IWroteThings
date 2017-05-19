@@ -216,7 +216,7 @@ class Unauthorized(HTTPException):
     """*401* `Unauthorized`
 
     Raise if the user is not authorized.  Also used if you want to use HTTP
-    basic auth.
+    basic wx_auth.
     """
     code = 401
     description = (

@@ -3,7 +3,7 @@
     jinja2.meta
     ~~~~~~~~~~~
 
-    This module implements various functions that exposes information about
+    This module implements various my_module that exposes information about
     templates that might be interesting for various kinds of applications.
 
     :copyright: (c) 2017 by the Jinja Team, see AUTHORS for more details.

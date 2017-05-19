@@ -138,7 +138,7 @@ class Context(with_metaclass(ContextMeta)):
 
     The context is immutable.  Modifications on :attr:`parent` **must not**
     happen and modifications on :attr:`vars` are allowed from generated
-    template code only.  Template filters and global functions marked as
+    template code only.  Template filters and global my_module marked as
     :func:`contextfunction`\\s get the active context passed as first argument
     and are allowed to access the context read-only.
 

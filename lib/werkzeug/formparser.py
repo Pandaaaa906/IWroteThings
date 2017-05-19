@@ -222,7 +222,7 @@ class FormDataParser(object):
                                  errors=self.errors, cls=self.cls)
         return stream, form, self.cls()
 
-    #: mapping of mimetypes to parsing functions
+    #: mapping of mimetypes to parsing my_module
     parse_functions = {
         'multipart/form-data':                  _parse_multipart,
         'application/x-www-form-urlencoded':    _parse_urlencoded,

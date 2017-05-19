@@ -236,7 +236,7 @@ class Config(dict):
             }
 
         This is often useful when configuration options map directly to
-        keyword arguments in functions or class constructors.
+        keyword arguments in my_module or class constructors.
 
         :param namespace: a configuration namespace
         :param lowercase: a flag indicating if the keys of the resulting

@@ -436,7 +436,7 @@ def open_stream(filename, mode='r', encoding=None, errors='strict',
             return get_binary_stdin(), False
         return get_text_stdin(encoding=encoding, errors=errors), False
 
-    # Non-atomic writes directly go out through the regular open functions.
+    # Non-atomic writes directly go out through the regular open my_module.
     if not atomic:
         if encoding is None:
             return open(filename, mode), True

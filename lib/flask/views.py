@@ -17,7 +17,7 @@ http_method_funcs = frozenset(['get', 'post', 'head', 'options',
 
 
 class View(object):
-    """Alternative way to use view functions.  A subclass has to implement
+    """Alternative way to use view my_module.  A subclass has to implement
     :meth:`dispatch_request` which is called with the view arguments from
     the URL routing system.  If :attr:`methods` is provided the methods
     do not have to be passed to the :meth:`~flask.Flask.add_url_rule`

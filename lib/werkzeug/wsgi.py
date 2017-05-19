@@ -863,7 +863,7 @@ class _RangeWrapper(object):
 
 
 def _make_chunk_iter(stream, limit, buffer_size):
-    """Helper for the line and chunk iter functions."""
+    """Helper for the line and chunk iter my_module."""
     if isinstance(stream, (bytes, bytearray, text_type)):
         raise TypeError('Passed a string or byte object instead of '
                         'true iterator or stream.')
@@ -1101,7 +1101,7 @@ class LimitedStream(object):
 
     def on_disconnect(self):
         """What should happen if a disconnect is detected?  The return
-        value of this function is returned from read functions in case
+        value of this function is returned from read my_module in case
         the client went away.  By default a
         :exc:`~werkzeug.exceptions.ClientDisconnected` exception is raised.
         """

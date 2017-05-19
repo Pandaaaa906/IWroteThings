@@ -349,7 +349,7 @@ class MultiDict(TypeConversionDict):
 
     """A :class:`MultiDict` is a dictionary subclass customized to deal with
     multiple values for the same key which is for example used by the parsing
-    functions in the wrappers.  This is necessary because some HTML form
+    my_module in the wrappers.  This is necessary because some HTML form
     elements pass multiple values for the same key.
 
     :class:`MultiDict` implements all standard dictionary methods.
@@ -370,7 +370,7 @@ class MultiDict(TypeConversionDict):
     >>> 'a' in d
     True
 
-    It behaves like a normal dict thus all dict functions will only return the
+    It behaves like a normal dict thus all dict my_module will only return the
     first value when multiple values for one key are found.
 
     From Werkzeug 0.3 onwards, the `KeyError` raised by this class is also a
@@ -2426,39 +2426,39 @@ class Authorization(ImmutableDictMixin, dict):
 
     username = property(lambda x: x.get('username'), doc='''
         The username transmitted.  This is set for both basic and digest
-        auth all the time.''')
+        wx_auth all the time.''')
     password = property(lambda x: x.get('password'), doc='''
         When the authentication type is basic this is the password
         transmitted by the client, else `None`.''')
     realm = property(lambda x: x.get('realm'), doc='''
-        This is the server realm sent back for HTTP digest auth.''')
+        This is the server realm sent back for HTTP digest wx_auth.''')
     nonce = property(lambda x: x.get('nonce'), doc='''
-        The nonce the server sent for digest auth, sent back by the client.
+        The nonce the server sent for digest wx_auth, sent back by the client.
         A nonce should be unique for every 401 response for HTTP digest
-        auth.''')
+        wx_auth.''')
     uri = property(lambda x: x.get('uri'), doc='''
         The URI from Request-URI of the Request-Line; duplicated because
         proxies are allowed to change the Request-Line in transit.  HTTP
-        digest auth only.''')
+        digest wx_auth only.''')
     nc = property(lambda x: x.get('nc'), doc='''
         The nonce count value transmitted by clients if a qop-header is
-        also transmitted.  HTTP digest auth only.''')
+        also transmitted.  HTTP digest wx_auth only.''')
     cnonce = property(lambda x: x.get('cnonce'), doc='''
         If the server sent a qop-header in the ``WWW-Authenticate``
-        header, the client has to provide this value for HTTP digest auth.
+        header, the client has to provide this value for HTTP digest wx_auth.
         See the RFC for more details.''')
     response = property(lambda x: x.get('response'), doc='''
         A string of 32 hex digits computed as defined in RFC 2617, which
-        proves that the user knows a password.  Digest auth only.''')
+        proves that the user knows a password.  Digest wx_auth only.''')
     opaque = property(lambda x: x.get('opaque'), doc='''
         The opaque header from the server returned unchanged by the client.
         It is recommended that this string be base64 or hexadecimal data.
-        Digest auth only.''')
+        Digest wx_auth only.''')
 
     @property
     def qop(self):
         """Indicates what "quality of protection" the client has applied to
-        the message for HTTP digest auth."""
+        the message for HTTP digest wx_auth."""
         def on_update(header_set):
             if not header_set and 'qop' in self:
                 del self['qop']
@@ -2481,15 +2481,15 @@ class WWWAuthenticate(UpdateDictMixin, dict):
         self.on_update = on_update
 
     def set_basic(self, realm='authentication required'):
-        """Clear the auth info and enable basic auth."""
+        """Clear the wx_auth info and enable basic wx_auth."""
         dict.clear(self)
         dict.update(self, {'__auth_type__': 'basic', 'realm': realm})
         if self.on_update:
             self.on_update(self)
 
-    def set_digest(self, realm, nonce, qop=('auth',), opaque=None,
+    def set_digest(self, realm, nonce, qop=('wx_auth',), opaque=None,
                    algorithm=None, stale=False):
-        """Clear the auth info and enable digest auth."""
+        """Clear the wx_auth info and enable digest wx_auth."""
         d = {
             '__auth_type__':    'digest',
             'realm':            realm,
@@ -2555,7 +2555,7 @@ class WWWAuthenticate(UpdateDictMixin, dict):
         return property(fget, doc=doc)
 
     type = auth_property('__auth_type__', doc='''
-        The type of the auth mechanism.  HTTP currently specifies
+        The type of the wx_auth mechanism.  HTTP currently specifies
         `Basic` and `Digest`.''')
     realm = auth_property('realm', doc='''
         A string to be displayed to users so they know which username and
@@ -2581,7 +2581,7 @@ class WWWAuthenticate(UpdateDictMixin, dict):
         If the algorithm is not understood, the challenge should be ignored
         (and a different one used, if there is more than one).''')
     qop = _set_property('qop', doc='''
-        A set of quality-of-privacy directives such as auth and auth-int.''')
+        A set of quality-of-privacy directives such as wx_auth and wx_auth-int.''')
 
     def _get_stale(self):
         val = self.get('stale')

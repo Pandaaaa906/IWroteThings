@@ -261,7 +261,7 @@ def with_appcontext(f):
 class AppGroup(click.Group):
     """This works similar to a regular click :class:`~click.Group` but it
     changes the behavior of the :meth:`command` decorator so that it
-    automatically wraps the functions in :func:`with_appcontext`.
+    automatically wraps the my_module in :func:`with_appcontext`.
 
     Not to be confused with :class:`FlaskGroup`.
     """

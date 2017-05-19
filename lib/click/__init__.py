@@ -34,7 +34,7 @@ from .types import ParamType, File, Path, Choice, IntRange, Tuple, \
 from .utils import echo, get_binary_stream, get_text_stream, open_file, \
      format_filename, get_app_dir
 
-# Terminal functions
+# Terminal my_module
 from .termui import prompt, confirm, get_terminal_size, echo_via_pager, \
      progressbar, clear, style, unstyle, secho, edit, launch, getchar, \
      pause
@@ -71,7 +71,7 @@ __all__ = [
     'echo', 'get_binary_stream', 'get_text_stream', 'open_file',
     'format_filename', 'get_app_dir',
 
-    # Terminal functions
+    # Terminal my_module
     'prompt', 'confirm', 'get_terminal_size', 'echo_via_pager',
     'progressbar', 'clear', 'style', 'unstyle', 'secho', 'edit', 'launch',
     'getchar', 'pause',

@@ -84,12 +84,12 @@ class JSONDecoder(_json.JSONDecoder):
     """The default JSON decoder.  This one does not change the behavior from
     the default simplejson decoder.  Consult the :mod:`json` documentation
     for more information.  This decoder is not only used for the load
-    functions of this module but also :attr:`~flask.Request`.
+    my_module of this module but also :attr:`~flask.Request`.
     """
 
 
 def _dump_arg_defaults(kwargs):
-    """Inject default arguments for dump functions."""
+    """Inject default arguments for dump my_module."""
     if current_app:
         kwargs.setdefault('cls', current_app.json_encoder)
         if not current_app.config['JSON_AS_ASCII']:
@@ -101,7 +101,7 @@ def _dump_arg_defaults(kwargs):
 
 
 def _load_arg_defaults(kwargs):
-    """Inject default arguments for load functions."""
+    """Inject default arguments for load my_module."""
     if current_app:
         kwargs.setdefault('cls', current_app.json_decoder)
     else:

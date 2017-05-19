@@ -597,7 +597,7 @@ class CodeGenerator(NodeVisitor):
             in iteritems(frame.symbols.dump_stores()))
 
     def write_commons(self):
-        """Writes a common preamble that is used by root and block functions.
+        """Writes a common preamble that is used by root and block my_module.
         Primarily this sets up common local helpers and enforces a generator
         through a dead branch.
         """

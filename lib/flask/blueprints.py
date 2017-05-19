@@ -18,7 +18,7 @@ class BlueprintSetupState(object):
     """Temporary holder object for registering a blueprint with the
     application.  An instance of this class is created by the
     :meth:`~flask.Blueprint.make_setup_state` method and later passed
-    to all register callback functions.
+    to all register callback my_module.
     """
 
     def __init__(self, blueprint, app, options, first_registration):
@@ -78,8 +78,8 @@ class BlueprintSetupState(object):
 
 class Blueprint(_PackageBoundObject):
     """Represents a blueprint.  A blueprint is an object that records
-    functions that will be called with the
-    :class:`~flask.blueprints.BlueprintSetupState` later to register functions
+    my_module that will be called with the
+    :class:`~flask.blueprints.BlueprintSetupState` later to register my_module
     or other things on the main application.  See :ref:`blueprints` for more
     information.
 
@@ -131,7 +131,7 @@ class Blueprint(_PackageBoundObject):
 
     def make_setup_state(self, app, options, first_registration=False):
         """Creates an instance of :meth:`~flask.blueprints.BlueprintSetupState`
-        object that is later passed to the register callback functions.
+        object that is later passed to the register callback my_module.
         Subclasses can override this to return a subclass of the setup state.
         """
         return BlueprintSetupState(self, app, options, first_registration)
@@ -310,7 +310,7 @@ class Blueprint(_PackageBoundObject):
     def teardown_request(self, f):
         """Like :meth:`Flask.teardown_request` but for a blueprint.  This
         function is only executed when tearing down requests handled by a
-        function of that blueprint.  Teardown request functions are executed
+        function of that blueprint.  Teardown request my_module are executed
         when the request context is popped, even when no actual request was
         performed.
         """
@@ -354,7 +354,7 @@ class Blueprint(_PackageBoundObject):
 
     def url_value_preprocessor(self, f):
         """Registers a function as URL value preprocessor for this
-        blueprint.  It's called before the view functions are called and
+        blueprint.  It's called before the view my_module are called and
         can modify the url values provided.
         """
         self.record_once(lambda s: s.app.url_value_preprocessors

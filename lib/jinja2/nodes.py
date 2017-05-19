@@ -5,7 +5,7 @@
 
     This module implements additional nodes derived from the ast base node.
 
-    It also provides some node tree helper functions like `in_lineno` and
+    It also provides some node tree helper my_module like `in_lineno` and
     `get_nodes` used by the parser and translator in order to normalize
     python and jinja nodes.
 
@@ -20,7 +20,7 @@ from jinja2.utils import Markup
 from jinja2._compat import izip, with_metaclass, text_type, PY2
 
 
-#: the types we support for context functions
+#: the types we support for context my_module
 _context_function_types = (types.FunctionType, types.MethodType)
 
 

@@ -117,7 +117,7 @@ class BaseRequest(object):
             pass
 
     Request objects are **read only**.  As of 0.5 modifications are not
-    allowed in any place.  Unlike the lower level parsing functions the
+    allowed in any place.  Unlike the lower level parsing my_module the
     request object will use immutable objects everywhere possible.
 
     Per default the request object will assume all the text data is `utf-8`
@@ -294,7 +294,7 @@ class BaseRequest(object):
         #: and calls the function with all the arguments up to that one and
         #: the request.  The return value is then called with the latest
         #: two arguments.  This makes it possible to use this decorator for
-        #: both methods and standalone WSGI functions.
+        #: both methods and standalone WSGI my_module.
         def application(*args):
             request = cls(args[-2])
             with request:
@@ -828,7 +828,7 @@ class BaseResponse(object):
             self.response = response
 
     def call_on_close(self, func):
-        """Adds a function to the internal list of functions that should
+        """Adds a function to the internal list of my_module that should
         be called as part of closing down the response.  Since 0.7 this
         function also returns the function that was passed so that this
         can be used as a decorator.
@@ -1944,7 +1944,7 @@ class Request(BaseRequest, AcceptMixin, ETagRequestMixin,
     - :class:`AcceptMixin` for accept header parsing
     - :class:`ETagRequestMixin` for etag and cache control handling
     - :class:`UserAgentMixin` for user agent introspection
-    - :class:`AuthorizationMixin` for http auth handling
+    - :class:`AuthorizationMixin` for http wx_auth handling
     - :class:`CommonRequestDescriptorsMixin` for common headers
     """
 

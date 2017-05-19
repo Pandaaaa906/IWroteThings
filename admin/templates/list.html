@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+    <ol class="breadcrumb">
+        {% for node in breadcrumb %}
+            <li>{{ node.title() }}</li>
+        {% endfor %}
+    </ol>
+    <div class="toolbar">
+        <a class="btn btn-default" href="add">添加</a>
+    </div>
+    <table class="table table-striped table-hover">
+        <tr>
+            <th>#</th>
+            {% for table_header in table_headers %}
+                <th>{{ table_header }}</th>
+            {% endfor %}
+        </tr>
+        {% for row in table %}
+            <tr>
+                <td><input type="checkbox"></td>
+                {% for cell in row %}
+                    <td>{{ cell }}</td>
+                {% endfor %}
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

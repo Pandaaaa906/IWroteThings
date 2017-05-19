@@ -387,7 +387,7 @@ class DebuggedApplication(object):
 
         # If the trust return value is `None` it means that the cookie is
         # set but the stored pin hash value is bad.  This means that the
-        # pin was changed.  In this case we count a bad auth and unset the
+        # pin was changed.  In this case we count a bad wx_auth and unset the
         # cookie.  This way it becomes harder to guess the cookie name
         # instead of the pin as we still count up failures.
         bad_cookie = False
@@ -414,7 +414,7 @@ class DebuggedApplication(object):
                 self._fail_pin_auth()
 
         rv = Response(json.dumps({
-            'auth': auth,
+            'wx_auth': auth,
             'exhausted': exhausted,
         }), mimetype='application/json')
         if auth:

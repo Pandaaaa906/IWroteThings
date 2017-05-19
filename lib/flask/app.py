@@ -59,7 +59,7 @@ def setupmethod(f):
                 'in the application where a module was not imported '
                 'and decorators or other functionality was called too late.\n'
                 'To fix this make sure to import all your view modules, '
-                'database auth and everything related at a central place '
+                'database wx_auth and everything related at a central place '
                 'before the application starts serving requests.')
         return f(self, *args, **kwargs)
     return update_wrapper(wrapper_func, f)
@@ -69,7 +69,7 @@ class Flask(_PackageBoundObject):
     """The flask object implements a WSGI application and acts as the central
     object.  It is passed the name of the module or package of the
     application.  Once it is created it will act as a central registry for
-    the view functions, the URL rules, template configuration and much more.
+    the view my_module, the URL rules, template configuration and much more.
 
     The name of the package is used to resolve resources from inside the
     package or the folder the module is contained in depending on if the
@@ -247,7 +247,7 @@ class Flask(_PackageBoundObject):
         get_converter=_make_timedelta)
 
     #: A :class:`~datetime.timedelta` which is used as default cache_timeout
-    #: for the :func:`send_file` functions. The default is 12 hours.
+    #: for the :func:`send_file` my_module. The default is 12 hours.
     #:
     #: This attribute can also be configured from the config with the
     #: ``SEND_FILE_MAX_AGE_DEFAULT`` configuration key. This configuration
@@ -373,7 +373,7 @@ class Flask(_PackageBoundObject):
         self._logger = None
         self.logger_name = self.import_name
 
-        #: A dictionary of all view functions registered.  The keys will
+        #: A dictionary of all view my_module registered.  The keys will
         #: be function names which are also used to generate URLs and
         #: the values are the function objects themselves.
         #: To register a view function, use the :meth:`route` decorator.
@@ -395,7 +395,7 @@ class Flask(_PackageBoundObject):
         #: decorator.
         self.error_handler_spec = {None: self._error_handlers}
 
-        #: A list of functions that are called when :meth:`url_for` raises a
+        #: A list of my_module that are called when :meth:`url_for` raises a
         #: :exc:`~werkzeug.routing.BuildError`.  Each function registered here
         #: is called with `error`, `endpoint` and `values`.  If a function
         #: returns ``None`` or raises a :exc:`BuildError` the next function is
@@ -404,7 +404,7 @@ class Flask(_PackageBoundObject):
         #: .. versionadded:: 0.9
         self.url_build_error_handlers = []
 
-        #: A dictionary with lists of functions that should be called at the
+        #: A dictionary with lists of my_module that should be called at the
         #: beginning of the request.  The key of the dictionary is the name of
         #: the blueprint this function is active for, ``None`` for all requests.
         #: This can for example be used to open database connections or
@@ -412,24 +412,24 @@ class Flask(_PackageBoundObject):
         #: function here, use the :meth:`before_request` decorator.
         self.before_request_funcs = {}
 
-        #: A lists of functions that should be called at the beginning of the
+        #: A lists of my_module that should be called at the beginning of the
         #: first request to this instance.  To register a function here, use
         #: the :meth:`before_first_request` decorator.
         #:
         #: .. versionadded:: 0.8
         self.before_first_request_funcs = []
 
-        #: A dictionary with lists of functions that should be called after
+        #: A dictionary with lists of my_module that should be called after
         #: each request.  The key of the dictionary is the name of the blueprint
         #: this function is active for, ``None`` for all requests.  This can for
         #: example be used to close database connections. To register a function
         #: here, use the :meth:`after_request` decorator.
         self.after_request_funcs = {}
 
-        #: A dictionary with lists of functions that are called after
+        #: A dictionary with lists of my_module that are called after
         #: each request, even if an exception has occurred. The key of the
         #: dictionary is the name of the blueprint this function is active for,
-        #: ``None`` for all requests. These functions are not allowed to modify
+        #: ``None`` for all requests. These my_module are not allowed to modify
         #: the request, and their return values are ignored. If an exception
         #: occurred while processing the request, it gets passed to each
         #: teardown_request function. To register a function here, use the
@@ -438,7 +438,7 @@ class Flask(_PackageBoundObject):
         #: .. versionadded:: 0.7
         self.teardown_request_funcs = {}
 
-        #: A list of functions that are called when the application context
+        #: A list of my_module that are called when the application context
         #: is destroyed.  Since the application context is also torn down
         #: if the request ends this is the place to store code that disconnects
         #: from databases.
@@ -446,20 +446,20 @@ class Flask(_PackageBoundObject):
         #: .. versionadded:: 0.9
         self.teardown_appcontext_funcs = []
 
-        #: A dictionary with lists of functions that can be used as URL
-        #: value processor functions.  Whenever a URL is built these functions
+        #: A dictionary with lists of my_module that can be used as URL
+        #: value processor my_module.  Whenever a URL is built these my_module
         #: are called to modify the dictionary of values in place.  The key
         #: ``None`` here is used for application wide
         #: callbacks, otherwise the key is the name of the blueprint.
-        #: Each of these functions has the chance to modify the dictionary
+        #: Each of these my_module has the chance to modify the dictionary
         #:
         #: .. versionadded:: 0.7
         self.url_value_preprocessors = {}
 
-        #: A dictionary with lists of functions that can be used as URL value
+        #: A dictionary with lists of my_module that can be used as URL value
         #: preprocessors.  The key ``None`` here is used for application wide
         #: callbacks, otherwise the key is the name of the blueprint.
-        #: Each of these functions has the chance to modify the dictionary
+        #: Each of these my_module has the chance to modify the dictionary
         #: of URL values before they are used as the keyword arguments of the
         #: view function.  For each function registered this one should also
         #: provide a :meth:`url_defaults` function that adds the parameters
@@ -468,7 +468,7 @@ class Flask(_PackageBoundObject):
         #: .. versionadded:: 0.7
         self.url_default_functions = {}
 
-        #: A dictionary with list of functions that are called without argument
+        #: A dictionary with list of my_module that are called without argument
         #: to populate the template context.  The key of the dictionary is the
         #: name of the blueprint this function is active for, ``None`` for all
         #: requests.  Each returns a dictionary that the template context is
@@ -478,7 +478,7 @@ class Flask(_PackageBoundObject):
             None: [_default_template_ctx_processor]
         }
 
-        #: A list of shell context processor functions that should be run
+        #: A list of shell context processor my_module that should be run
         #: when a shell context is created.
         #:
         #: .. versionadded:: 0.11
@@ -1326,7 +1326,7 @@ class Flask(_PackageBoundObject):
     @setupmethod
     def teardown_request(self, f):
         """Register a function to be run at the end of each request,
-        regardless of whether there was an exception or not.  These functions
+        regardless of whether there was an exception or not.  These my_module
         are executed when the request context is popped, even if not an
         actual request was performed.
 
@@ -1338,11 +1338,11 @@ class Flask(_PackageBoundObject):
             ctx.pop()
 
         When ``ctx.pop()`` is executed in the above example, the teardown
-        functions are called just before the request context moves from the
+        my_module are called just before the request context moves from the
         stack of active contexts.  This becomes relevant if you are using
         such constructs in tests.
 
-        Generally teardown functions must take every necessary step to avoid
+        Generally teardown my_module must take every necessary step to avoid
         that they will fail.  If they do execute code that might fail they
         will have to surround the execution of these code by try/except
         statements and log occurring errors.
@@ -1350,7 +1350,7 @@ class Flask(_PackageBoundObject):
         When a teardown function was called because of a exception it will
         be passed an error object.
 
-        The return values of teardown functions are ignored.
+        The return values of teardown my_module are ignored.
 
         .. admonition:: Debug Note
 
@@ -1365,7 +1365,7 @@ class Flask(_PackageBoundObject):
     @setupmethod
     def teardown_appcontext(self, f):
         """Registers a function to be called when the application context
-        ends.  These functions are typically also called when the request
+        ends.  These my_module are typically also called when the request
         context is popped.
 
         Example::
@@ -1376,7 +1376,7 @@ class Flask(_PackageBoundObject):
             ctx.pop()
 
         When ``ctx.pop()`` is executed in the above example, the teardown
-        functions are called just before the app context moves from the
+        my_module are called just before the app context moves from the
         stack of active contexts.  This becomes relevant if you are using
         such constructs in tests.
 
@@ -1386,7 +1386,7 @@ class Flask(_PackageBoundObject):
         When a teardown function was called because of an exception it will
         be passed an error object.
 
-        The return values of teardown functions are ignored.
+        The return values of teardown my_module are ignored.
 
         .. versionadded:: 0.9
         """
@@ -1411,7 +1411,7 @@ class Flask(_PackageBoundObject):
     @setupmethod
     def url_value_preprocessor(self, f):
         """Registers a function as URL value preprocessor for all view
-        functions of the application.  It's called before the view functions
+        my_module of the application.  It's called before the view my_module
         are called and can modify the url values provided.
         """
         self.url_value_preprocessors.setdefault(None, []).append(f)
@@ -1419,7 +1419,7 @@ class Flask(_PackageBoundObject):
 
     @setupmethod
     def url_defaults(self, f):
-        """Callback function for URL defaults for all view functions of the
+        """Callback function for URL defaults for all view my_module of the
         application.  It's called with the endpoint and values and should
         update the values passed in place.
         """
@@ -1617,7 +1617,7 @@ class Flask(_PackageBoundObject):
     def finalize_request(self, rv, from_error_handler=False):
         """Given the return value from a view function this finalizes
         the request by converting it into a response and invoking the
-        postprocessing functions.  This is invoked for both normal
+        postprocessing my_module.  This is invoked for both normal
         request dispatching as well as error handlers.
 
         Because this means that it might be called as a result of a
@@ -1809,12 +1809,12 @@ class Flask(_PackageBoundObject):
         """Called before the actual request dispatching and will
         call each :meth:`before_request` decorated function, passing no
         arguments.
-        If any of these functions returns a value, it's handled as
+        If any of these my_module returns a value, it's handled as
         if it was the return value from the view and further
         request handling is stopped.
 
-        This also triggers the :meth:`url_value_preprocessor` functions before
-        the actual :meth:`before_request` functions are called.
+        This also triggers the :meth:`url_value_preprocessor` my_module before
+        the actual :meth:`before_request` my_module are called.
         """
         bp = _request_ctx_stack.top.request.blueprint
 
@@ -1835,10 +1835,10 @@ class Flask(_PackageBoundObject):
     def process_response(self, response):
         """Can be overridden in order to modify the response object
         before it's sent to the WSGI server.  By default this will
-        call all the :meth:`after_request` decorated functions.
+        call all the :meth:`after_request` decorated my_module.
 
         .. versionchanged:: 0.5
-           As of Flask 0.5 the functions registered for after request
+           As of Flask 0.5 the my_module registered for after request
            execution are called in reverse order of registration.
 
         :param response: a :attr:`response_class` object.

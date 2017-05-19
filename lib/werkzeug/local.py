@@ -229,7 +229,7 @@ class LocalManager(object):
         return application
 
     def middleware(self, func):
-        """Like `make_middleware` but for decorating functions.
+        """Like `make_middleware` but for decorating my_module.
 
         Example usage::
 

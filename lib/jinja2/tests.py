@@ -3,7 +3,7 @@
     jinja2.tests
     ~~~~~~~~~~~~
 
-    Jinja test functions. Used with the "is" operator.
+    Jinja test my_module. Used with the "is" operator.
 
     :copyright: (c) 2017 by the Jinja Team.
     :license: BSD, see LICENSE for more details.

@@ -888,12 +888,12 @@ class _PackageBoundObject(object):
                                                  self.template_folder))
 
     def get_send_file_max_age(self, filename):
-        """Provides default cache_timeout for the :func:`send_file` functions.
+        """Provides default cache_timeout for the :func:`send_file` my_module.
 
         By default, this function returns ``SEND_FILE_MAX_AGE_DEFAULT`` from
         the configuration of :data:`~flask.current_app`.
 
-        Static file functions such as :func:`send_from_directory` use this
+        Static file my_module such as :func:`send_from_directory` use this
         function, and :func:`send_file` calls this function on
         :data:`~flask.current_app` when the given cache_timeout is ``None``. If a
         cache_timeout is given in :func:`send_file`, that timeout is used;

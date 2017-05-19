@@ -124,7 +124,7 @@ class _ConsoleLoader(object):
 
     def register(self, code, source):
         self._storage[id(code)] = source
-        # register code objects of wrapped functions too.
+        # register code objects of wrapped my_module too.
         for var in code.co_consts:
             if isinstance(var, CodeType):
                 self._storage[id(var)] = source

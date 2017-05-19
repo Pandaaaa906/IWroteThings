@@ -103,7 +103,7 @@ def copy_current_request_context(f):
     if top is None:
         raise RuntimeError('This decorator can only be used at local scopes '
             'when a request context is on the stack.  For instance within '
-            'view functions.')
+            'view my_module.')
     reqctx = top.copy()
     def wrapper(*args, **kwargs):
         with reqctx:
@@ -119,7 +119,7 @@ def has_request_context():
 
     ::
 
-        class auth(db.Model):
+        class wx_auth(db.Model):
 
             def __init__(self, username, remote_addr=None):
                 self.username = username
@@ -130,7 +130,7 @@ def has_request_context():
     Alternatively you can also just test any of the context bound objects
     (such as :class:`request` or :class:`g` for truthness)::
 
-        class auth(db.Model):
+        class wx_auth(db.Model):
 
             def __init__(self, username, remote_addr=None):
                 self.username = username
@@ -215,7 +215,7 @@ class RequestContext(object):
     :meth:`~flask.Flask.request_context` to create this object.
 
     When the request context is popped, it will evaluate all the
-    functions registered on the application for teardown execution
+    my_module registered on the application for teardown execution
     (:meth:`~flask.Flask.teardown_request`).
 
     The request context is automatically popped at the end of the request
@@ -259,7 +259,7 @@ class RequestContext(object):
 
         # Functions that should be executed after the request on the response
         # object.  These will be called before the regular "after_request"
-        # functions.
+        # my_module.
         self._after_request_functions = []
 
         self.match_request()
@@ -335,7 +335,7 @@ class RequestContext(object):
 
     def pop(self, exc=_sentinel):
         """Pops the request context and unbinds it by doing that.  This will
-        also trigger the execution of functions registered by the
+        also trigger the execution of my_module registered by the
         :meth:`~flask.Flask.teardown_request` decorator.
 
         .. versionchanged:: 0.9

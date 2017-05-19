@@ -59,7 +59,7 @@ bc_magic = 'j2'.encode('ascii') + \
 
 class Bucket(object):
     """Buckets are used to store the bytecode for one template.  It's created
-    and initialized by the bytecode cache and passed to the loading functions.
+    and initialized by the bytecode cache and passed to the loading my_module.
 
     The buckets get an internal checksum from the cache assigned and use this
     to automatically reject outdated cache material.  Individual bytecode

@@ -3,7 +3,7 @@
     werkzeug.debug.tbtools
     ~~~~~~~~~~~~~~~~~~~~~~
 
-    This module provides various traceback related utility functions.
+    This module provides various traceback related utility my_module.
 
     :copyright: (c) 2014 by the Werkzeug Team, see AUTHORS for more details.
     :license: BSD.

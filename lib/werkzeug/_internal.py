@@ -108,7 +108,7 @@ def _parse_signature(func):
     arguments = []
     for idx, name in enumerate(positional):
         if isinstance(name, list):
-            raise TypeError('cannot parse functions that unpack tuples '
+            raise TypeError('cannot parse my_module that unpack tuples '
                             'in the function signature')
         try:
             default = defaults[idx - arg_count]
