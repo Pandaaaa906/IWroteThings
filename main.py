@@ -38,13 +38,14 @@ def index():
 
 
 @app.route('/login/', methods=["GET", "POST"])
+@debug_error
 def login():
     if request.method == "GET":
         return render_template("login.html")
     else:
-        name = request.form.get("name", None)
+        username = request.form.get("username", None)
         password = request.form.get("password", None)
-        user = BlogUser.login(name=name, password=password)
+        user = BlogUser.login(username=username, password=password)
 
         return redirect(url_for('index'))
 
@@ -61,12 +62,12 @@ def signup():
     if request.method == "GET":
         return render_template("signup.html")
     else:
-        name = str(request.form.get("name", None))
+        username = str(request.form.get("username", None))
         password = str(request.form.get("password", None))
         try:
             # import pdb;
             # pdb.set_trace();
-            user = BlogUser.create(name=name, password=password)
+            user = BlogUser.create(username=username, password=password)
 
         except ValueError as e:
             return e

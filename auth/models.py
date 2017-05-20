@@ -30,13 +30,13 @@ class BlogUser(db.Model):
             return str(self.key.string_id())  # python 3
 
     @classmethod
-    def create(cls, name, password):
-        user = cls.get_by_id(name)
+    def create(cls, username, password):
+        user = cls.get_by_id(username)
         if not user:
             aes = mCrypt(app.config['MKEY'], app.config['MIV'])
             password = aes.encrypt(password)
             try:
-                user = cls(id=name, name=name, password=password)
+                user = cls(id=username, name=username, password=password)
             except BaseException as e:
                 print e
             user.put()
@@ -45,13 +45,13 @@ class BlogUser(db.Model):
             raise ValueError("Name existed")
 
     @classmethod
-    def login(cls, name, password):
+    def login(cls, username, password):
         aes = mCrypt(app.config['MKEY'], app.config['MIV'])
         password = aes.encrypt(password)
-        user = cls.get_by_id(name)
+        user = cls.get_by_id(username)
         if user:
             if user.password == password:
-                session["SSID"] = name
+                session["SSID"] = username
                 login_user(user)
                 return user
             else:

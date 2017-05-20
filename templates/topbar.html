@@ -5,6 +5,10 @@
             /
             <a href="/login/">登录</a>
         {% else %}
+            {% if g.user.is_superuser %}
+                <a href="/admin">管理页面</a>
+                /
+            {% endif %}
             <a href="/logout/">登出</a>
         {% endif %}
     </div>
