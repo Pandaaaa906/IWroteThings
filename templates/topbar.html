@@ -5,6 +5,7 @@
             /
             <a href="/login/">登录</a>
         {% else %}
+            Welcome {{ g.user.name }}.
             {% if g.user.is_superuser %}
                 <a href="/admin">管理页面</a>
                 /

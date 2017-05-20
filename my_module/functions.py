@@ -1,7 +1,10 @@
 import base64
+import traceback
 from functools import wraps
 
+import sys
 from Crypto.Cipher import AES
+from flask import render_template
 
 
 def has_no_empty_params(rule):
@@ -34,7 +37,9 @@ def debug_error(f):
         try:
             return f(*args, **kwargs)
         except BaseException as e:
-            print type(e)
-            return str(e)
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            format_exceptions = traceback.format_exception(exc_type, exc_value, exc_traceback)
+            return render_template("debug.html",
+                                   format_exceptions=format_exceptions)
 
     return decorated_function

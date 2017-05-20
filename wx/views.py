@@ -1,33 +1,22 @@
 import json
 import urllib2
-from functools import wraps
+
 
 from google.appengine.api import memcache
 
 from flask import current_app as app, request, jsonify, Blueprint
 from my_module.WXBizDataCrypt import WXBizDataCrypt
 from my_module.functions import mCrypt
+from wx.utils import check_wx_referer, wx_debug
 from wx_auth.models import User
 
 wx_page = Blueprint('wx_page', __name__,
                     template_folder='templates')
 
 
-def check_wx_referer(f):
-    @wraps(f)
-    def decorated_function(*args, **kwargs):
-        referer = request.headers.get('referer', "")
-        app_id = app.config.get('APP_ID', "")
-        st = "https://servicewechat.com/{appid}".format(appid=app_id)
-        if not referer.startswith(st):
-            return "You're Not My Little App"
-        return f(*args, **kwargs)
-
-    return decorated_function
-
-
 @wx_page.route('/login', methods=["GET", "POST"])
 @check_wx_referer
+@wx_debug
 def login():
     open_id = request.args.get("open_id")
     mAES = mCrypt(app.config['MKEY'],app.config['MIV'])
@@ -48,12 +37,14 @@ def login():
             user.put()
         except BaseException as e:
             print e
+        raise ValueError("asdfasdf")
         return jsonify(obj)
         # TODO check&add user to database
 
 
 @wx_page.route('/get_session')
-# @check_wx_referer
+@check_wx_referer
+@wx_debug
 def get_session():
     js_code = request.args.get('js_code', '')
     app_id = app.config.get('APP_ID', None)

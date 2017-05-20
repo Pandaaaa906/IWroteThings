@@ -28,6 +28,7 @@ def load_user(id):
 
 
 @app.route('/')
+@debug_error
 def index():
     links = []
     for rule in app.url_map.iter_rules():
