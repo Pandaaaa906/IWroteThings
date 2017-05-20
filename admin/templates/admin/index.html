@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    {% for row in table %}
+    <div class="col-md-8 well well-sm">
+        <h3>{{ row.app_label.title() }}</h3>
+        {% for model_name in row.models %}
+            <a href="{{ row.app_label }}/{{ model_name }}">{{ model_name }}</a>
+        {% endfor %}
+    </div>
+    {% endfor %}
+{% endblock %}

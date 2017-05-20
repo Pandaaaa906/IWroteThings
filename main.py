@@ -1,14 +1,30 @@
 from admin.views import admin_page
-from auth.models import User
-from flask import Flask, request, redirect
+from auth.models import BlogUser
+from flask import Flask, request, redirect, g
 from flask import render_template, url_for
-from my_module.functions import has_no_empty_params
+from my_module.functions import has_no_empty_params, debug_error
 from wx.views import wx_page
+from flask_login import LoginManager, current_user, logout_user
 
 app = Flask(__name__)
 app.config.from_pyfile('config.py', silent=True)
+
+lm = LoginManager()
+lm.init_app(app)
+lm.login_view = 'login'
+
 app.register_blueprint(admin_page, url_prefix='/admin')
 app.register_blueprint(wx_page, url_prefix='/wx')
+
+
+@app.before_request
+def before_request():
+    g.user = current_user
+
+
+@lm.user_loader
+def load_user(id):
+    return BlogUser.get_by_id(id)
 
 
 @app.route('/')
@@ -18,7 +34,6 @@ def index():
         if "GET" in rule.methods and has_no_empty_params(rule):
             url = url_for(rule.endpoint, **(rule.defaults or {}))
             links.append([url, rule.endpoint])
-    print "ASDF", type(links)
     return render_template('index.html', links=links)
 
 
@@ -29,7 +44,16 @@ def login():
     else:
         name = request.form.get("name", None)
         password = request.form.get("password", None)
-        return name + password
+        user = BlogUser.login(name=name, password=password)
+
+        return redirect(url_for('index'))
+
+
+@app.route('/logout/', methods=["GET", "POST"])
+@debug_error
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
 
 
 @app.route('/signup/', methods=["GET", "POST"])
@@ -40,7 +64,10 @@ def signup():
         name = str(request.form.get("name", None))
         password = str(request.form.get("password", None))
         try:
-            user = User.create(name=name, password=password)
+            # import pdb;
+            # pdb.set_trace();
+            user = BlogUser.create(name=name, password=password)
+
         except ValueError as e:
             return e
         return redirect(url_for("login"))

@@ -30,7 +30,7 @@ def check_wx_referer(f):
 @check_wx_referer
 def login():
     open_id = request.args.get("open_id")
-    mAES = mCrypt()
+    mAES = mCrypt(app.config['MKEY'],app.config['MIV'])
     open_id = mAES.decrypt(open_id)
     session_key = memcache.get(open_id, None)
     if session_key is None:
@@ -70,6 +70,6 @@ def get_session():
         session_key = j_obj.get("session_key", "None")
         expires_in = j_obj.get("expires_in", 1500)
         memcache.set(open_id, session_key, expires_in)
-        mAES = mCrypt()
+        mAES = mCrypt(app.config['MKEY'],app.config['MIV'])
         en_open_id = mAES.encrypt(open_id)
         return jsonify(status="success", open_id=en_open_id)

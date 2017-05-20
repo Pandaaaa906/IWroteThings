@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="col-md-4 col-md-offset-4 well">
+        <h2>Sign Up</h2>
+        <form id="signup" action="/signup/" method="post">
+            <label for="name">Name</label>
+            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="password">
+            <label>
+                <input type="checkbox" id="keep_session" name="keep_session"> Remember me
+            </label>
+            <br>
+            <button type="submit" class="btn btn-default">Submit</button>
+        </form>
+    </div>
+{% endblock %}
