@@ -32,14 +32,9 @@ def login():
         pc = WXBizDataCrypt(app_id, session_key)
         obj = pc.decrypt(encryptedData, iv)
         obj.pop("watermark")
-        try:
-            user = User(**obj)
-            user.put()
-        except BaseException as e:
-            print e
-        raise ValueError("asdfasdf")
+        user = User(id=open_id, **obj)
+        user.put()
         return jsonify(obj)
-        # TODO check&add user to database
 
 
 @wx_page.route('/get_session')
